@@ -1,5 +1,14 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
+doctype html
+html
+  head
+    title HisoHiso
+    link(rel='stylesheet',href='/stylesheets/chat.css',type='text/css')
+  body
+    h1 HisoHiso Chat
+    ul#messages
+    form(action="")
+      input#msg_box(autocomplete='off')
+      button Send
+    script(src='https://cdn.socket.io/socket.io-1.2.0.js')
+    script(src='http://code.jquery.com/jquery-1.11.1.js')
+    script(src='/javascripts/chat.js')
