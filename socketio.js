@@ -2,13 +2,25 @@
  * Socket.IO process of server side.
  */
 
+// 
+var db = require('./db');
+
 function socketio(server) {
   io = require('socket.io')(server);
+
+  // When connect to server.
   io.on('connect', function(socket){
-    console.log('new connection!');
-    // 
+
+    // Read past log.
+    socket.on('read', function(){
+      console.log('PATH TEST: Read.');
+      db.read();
+      // io.emit('update', row);
+    });
+
+    // When a message is receoved.
     socket.on('message', function(msg){
-      console.log('message: ' + msg);
+      db.write(msg);
       io.emit('update', msg); 
     });
   });
